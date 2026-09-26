@@ -20,6 +20,6 @@ streamlit run dashboard/app.py
 
 The source Excel file is expected at `data/Online Retail.xlsx`.
 
-## Deploy on Streamlit Community Cloud
+## Deploy on Render
 
-Select this repository, choose the `main` branch, and set the main file path to `dashboard/app.py`.
+The repository includes a `render.yaml` Blueprint for the web service. In Render, choose **New + → Blueprint**, connect this GitHub repository, and deploy the `neuralretail-dashboard` service. Render installs `requirements.txt` and starts Streamlit on the port assigned to the service.
