@@ -42,26 +42,17 @@ def rfm_segmentation(rfm):
     print("CUSTOMER SEGMENTATION")
     print("=" * 50)
 
-    # R Score (Low Recency = Better)
-    rfm["R_Score"] = pd.qcut(
-        rfm["Recency"],
-        4,
-        labels=[4, 3, 2, 1]
-    ).astype(int)
+    # Rank based scoring stays stable when many customers have tied values
+    # or a filter leaves fewer than four customers.
+    def quartile_score(series, reverse=False):
+        score = (series.rank(method="first", pct=True) * 4).apply(
+            lambda value: min(4, max(1, int(value + 0.999999)))
+        )
+        return 5 - score if reverse else score
 
-    # F Score
-    rfm["F_Score"] = pd.qcut(
-        rfm["Frequency"].rank(method="first"),
-        4,
-        labels=[1, 2, 3, 4]
-    ).astype(int)
-
-    # M Score
-    rfm["M_Score"] = pd.qcut(
-        rfm["Monetary"],
-        4,
-        labels=[1, 2, 3, 4]
-    ).astype(int)
+    rfm["R_Score"] = quartile_score(rfm["Recency"], reverse=True).astype(int)
+    rfm["F_Score"] = quartile_score(rfm["Frequency"]).astype(int)
+    rfm["M_Score"] = quartile_score(rfm["Monetary"]).astype(int)
 
     # Combined Score
     rfm["RFM_Score"] = (

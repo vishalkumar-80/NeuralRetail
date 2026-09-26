@@ -1,50 +1,25 @@
-# 🛍️ NeuralRetail Dashboard
+﻿# NeuralRetail Dashboard
 
-An interactive Retail Sales Analytics Dashboard built using Python and Streamlit.
+Interactive retail sales analytics dashboard built with Streamlit, Pandas, and Plotly.
 
-## 🚀 Features
+## Features
 
-- 📈 Monthly Sales Analysis
-- 🌍 Country-wise Sales Distribution
-- 🏆 Top Products Analysis
-- 👥 Customer Segmentation (RFM)
-- 📊 KPI Dashboard
-- 📋 Dataset Preview
+- Country and year filters applied across the dashboard
+- Revenue, order, customer, and average order value KPIs
+- Monthly revenue trend by year
+- Top products and countries by revenue
+- RFM customer segmentation
+- Filtered dataset preview
 
-## 🛠️ Technologies Used
-
-- Python
-- Streamlit
-- Pandas
-- Plotly
-- Scikit-learn
-
-## 📂 Project Structure
-
-```
-NeuralRetail/
-│── dashboard/
-│── data/
-│── images/
-│── models/
-│── notebooks/
-│── reports/
-│── src/
-│── main.py
-│── README.md
-```
-
-## ▶️ Run Locally
+## Run locally
 
 ```bash
 pip install -r requirements.txt
-streamlit run main.py
+streamlit run dashboard/app.py
 ```
 
-## 📸 Dashboard
+The source Excel file is expected at `data/Online Retail.xlsx`.
 
-(Add dashboard screenshot here)
+## Deploy on Streamlit Community Cloud
 
-## 👨‍💻 Author
-
-**Vishal Kumar**
+Select this repository, choose the `main` branch, and set the main file path to `dashboard/app.py`.
